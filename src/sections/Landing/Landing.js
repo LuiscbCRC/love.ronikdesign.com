@@ -6,7 +6,6 @@ const animate = require('@jam3/gsap-promise');
 const Button = require('../../components/Button/Button');
 const Controls = require('../../components/Controls/Controls');
 const Icon = require('../../components/Icon/Icon');
-const Logo = require('../../components/Logo/Logo');
 const ReactGA = require('react-ga');
 
 class Landing extends BaseComponent {
@@ -15,10 +14,7 @@ class Landing extends BaseComponent {
   }
 
   animateIn () {
-    this.logo.animateIn({ delay: 4 });
-    this.muteButton.animateIn({ delay: 4.2 });
     this.shuffleButton.animateIn({ delay: 4.3 });
-    this.shareButton.animateIn({ delay: 4.4 });
   }
 
   animateOut () {
@@ -37,31 +33,13 @@ class Landing extends BaseComponent {
     });
   }
 
-  handleShare () {
-    this.props.updateContent('Share');
-    ReactGA.event({
-      category: 'button',
-      action: 'click',
-      label: 'spread the love'
-    });
-  }
-
   render () {
     const classes = classnames({
       'Landing': true
     });
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
-        <Logo ref={c => {this.logo = c; }}/>
         <Controls>
-          <div className="ControlsGroup">
-            <Button
-              onClick={() => this.props.toggleMusic()}
-              ref={ c => { this.muteButton = c; } }
-              icon='sound'
-              extraClasses={{muted: this.props.isMuted}}
-            />
-          </div>
           <div className="ControlsGroup">
             <Button
               onClick={() => this.handleShuffle()}
@@ -69,14 +47,6 @@ class Landing extends BaseComponent {
               icon='random'
               extraClasses={{primary: true}}
             />
-            <Button
-              onClick={() => this.handleShare()}
-              ref={ c => { this.shareButton = c; } }
-              icon='share'
-              expanded
-            >
-              Spread the love
-            </Button>
           </div>
         </Controls>
       </div>

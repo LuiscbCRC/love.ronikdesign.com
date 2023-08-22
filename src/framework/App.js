@@ -16,7 +16,6 @@ const Landing = require('../sections/Landing/Landing');
 const Preloader = require('../sections/Preloader/Preloader');
 const EditText = require('../sections/EditText/EditText');
 const Share = require('../sections/Share/Share');
-const Music = require('../components/Music/Music');
 
 // WebGL canvas component
 const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
@@ -83,12 +82,10 @@ class App extends BaseComponent {
       return;
     }
     this.setState({wasPlaying: true});
-    this.toggleMusic();
   }
 
   handleWindowFocus () {
     if (this.state.wasPlaying) {
-      this.toggleMusic();
       this.setState({wasPlaying: false});
     }
   }
@@ -123,10 +120,6 @@ class App extends BaseComponent {
   handleCanvasMouseUp () {
     event.preventDefault();
     webgl.canvas.classList.remove('is-grabbing');
-  }
-
-  toggleMusic = () => {
-    this.setState({isMuted: !this.state.isMuted});
   }
 
   handleUpdateColors = () => {
@@ -206,7 +199,6 @@ class App extends BaseComponent {
                                       updateColors={this.handleUpdateColors}
                                       message={this.state.message}
                                       updateMessage={this.handleUpdateMessage}
-                                      toggleMusic={this.toggleMusic}
                                       isMuted={this.state.isMuted}
                                       />;
     }
@@ -228,7 +220,6 @@ class App extends BaseComponent {
         <PreactTransitionGroup className='content'>
           { content }
         </PreactTransitionGroup>
-        <Music isMuted={this.state.isMuted}/>
       </div>
     );
   }

@@ -116,38 +116,6 @@ class Share extends BaseComponent {
           >
           </Button>
         </div>
-        <div className='Share__content'>
-          <div className='Share__inner'>
-            <h1 className='Share__heading'>Spread the love</h1>
-            <Button expandable={false}
-                    ref={c => { this.shareTwitter = c }}
-                    onClick={() => this.handleShareTwitter()}
-            >
-              Share on Twitter
-            </Button>
-            <Button expandable={false}
-                    ref={c => { this.shareFacebook = c }}
-                    onClick={() => this.handleShareFacebook()}
-            >
-              Share on Facebook
-            </Button>
-            <div className='Share__flex'>
-              <input className='Share__location'
-                     readonly
-                     spellcheck={false}
-                     value={window.location}
-                     onClick={() => this.handleInputSelect()}
-                     ref={c => { this.shareLink = c; } }
-              />
-              <Button ref={ c => { this.copyButton = c; }}
-                      expandable={false}
-                      onClick={() => this.handleCopyClick()}
-              >
-                Copy
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
